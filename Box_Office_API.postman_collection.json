@@ -38,32 +38,12 @@
 					"response": []
 				},
 				{
-					"name": "Get Event",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/api/v1/events/{{event_id}}",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"events",
-								"{{event_id}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Get Event Status",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/v1/events/{{event_id}}/status",
+							"raw": "{{base_url}}/api/v1/events/{{event_id}}",
 							"host": [
 								"{{base_url}}"
 							],
@@ -106,26 +86,6 @@
 								"api",
 								"v1",
 								"holds"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get Hold",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/api/v1/holds/{{hold_id}}",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"holds",
-								"{{hold_id}}"
 							]
 						}
 					},

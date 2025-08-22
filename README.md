@@ -1,4 +1,32 @@
 # Ayush_Kumar_Agrawal's Box Office - Ticketing Service
+# Have hosted the service:
+  [DNS](https://ticket-booking-service-99hm.onrender.com)
+
+  [FastAPI Docs](https://ticket-booking-service-99hm.onrender.com/docs)
+
+  Note: 
+    1) Create Event (/api/v1/events): You will get aan event_id, which you will use in Get Event Status Service to get the number of seats - "total", "available", "held", "booked".
+
+    2) Create Hold (/api/v1/holds): Will create requests for holding the seat, you have to enter the same event_id which you get as the response of the create event and mention the quantity of the tickets to be booked.
+
+    Note: For not holdinga majority of tickets, I have applied a holding limit of 100 tickets. In case of a create holding request which exceeds the number 100 or the seatsavailable(i.e., capacity - (book + held)), then it will throw an InsufficientSeatsError Exception.
+    In case of a concurrent hold request that together would exceed capacity, itwill create the hold request for one and for the other it will throw an EventNotFoundError Exception, as due to locking the event won't be retrieved/NULL in case of the concurrent second request.
+
+    3) Create Booking (/api/v1/booking): Will create booking and will release the hold, you have to enter the hold_id, and payment_token that you received as a response of Hold api.
+    Note: Hold ttl is 2 mins., so after that booking can't be done.
+
+
+# Steps to run the code on local, if remote deployment is not working:
+Step 1: git clone [https://github.com/ayush-ak-725/ticket-booking-service.git]
+Step 2: cd ticket-booking-service
+Step 3: Install virtual env:
+    python -m venv venv
+    venv\Scripts\activate
+    source venv/Scripts/activate
+Step 4: Inside the venv, install all the dependencies by running:
+    pip install -r requirements.txt
+Step 5: python run.py (To start the server on localhost & port:8080)
+Step 6: The curls are already given in the file Box_Office_API.postman_collection.json
 
 A production-ready, scalable ticketing service that allows users to hold seats temporarily and then book them. Built with FastAPI, Redis, and following SOLID principles and OOP design patterns.
 

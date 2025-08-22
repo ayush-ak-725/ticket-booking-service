@@ -20,17 +20,7 @@ async def create_event(
     """Create a new event"""
     return await event_service.create_event(event_data)
 
-
-@router.get("/events/{event_id}", response_model=EventResponse)
-async def get_event(
-    event_id: str,
-    event_service: EventService = Depends(get_event_service)
-) -> EventResponse:
-    """Get event by ID"""
-    return await event_service.get_event(event_id)
-
-
-@router.get("/events/{event_id}/status")
+@router.get("/events/{event_id}")
 async def get_event_status(
     event_id: str,
     event_service: EventService = Depends(get_event_service)
@@ -48,16 +38,6 @@ async def create_hold(
     """Create a temporary hold on seats"""
     return await hold_service.create_hold(hold_data, ttl_seconds)
 
-
-@router.get("/holds/{hold_id}", response_model=HoldResponse)
-async def get_hold(
-    hold_id: str,
-    hold_service: HoldService = Depends(get_hold_service)
-) -> HoldResponse:
-    """Get hold by ID"""
-    return await hold_service.get_hold(hold_id)
-
-
 @router.post("/book", response_model=BookingResponse, status_code=status.HTTP_201_CREATED)
 async def create_booking(
     booking_data: BookingCreate,
@@ -65,15 +45,6 @@ async def create_booking(
 ) -> BookingResponse:
     """Confirm a booking using an active hold"""
     return await booking_service.create_booking(booking_data)
-
-
-@router.get("/bookings/{booking_id}", response_model=BookingResponse)
-async def get_booking(
-    booking_id: str,
-    booking_service: BookingService = Depends(get_booking_service)
-) -> BookingResponse:
-    """Get booking by ID"""
-    return await booking_service.get_booking(booking_id)
 
 
 # Bonus endpoints
